@@ -1,0 +1,36 @@
+<h2>Create Translation Form</h2>
+<div class="form-group">
+	<form>
+		<div class="translation-field">
+			<select name="level" 
+				#level
+				[(ngModel)]="translation.level">
+				<option *ngFor="let level of levels"
+					[ngValue]="level">{{level}}</option>
+			</select>
+			<input type="text"
+				name="translation.origin"
+			       placeholder="Origin Text"
+			       [(ngModel)]="translation.origin.text">
+			<input type="text"
+				name="translation.meaning"
+				placeholder="Meaning"
+				[(ngModel)]="translation.meaning.text"
+				(keyup.enter)="addTranslation()">
+		</div>
+	</form>
+</div>
+
+<h4>Latest</h4>
+
+	<div *ngFor="let tr of translations" class="translation-row">
+		<div class="column text">
+		<input type="text" [(ngModel)]="tr.origin.text" (keyup.enter)="editTerm(tr.origin)">
+		</div>
+		<div class="column">
+			<button value="delete" (click)="deleteTranslation(tr)" >delete</button>
+		</div>
+		<div class="column text meaning" onClick="console.log('click on div')">
+			<input type="text" [(ngModel)]="tr.meaning.text" (keyup.enter)="editTerm(tr.meaning)">
+		</div>
+	</div>
