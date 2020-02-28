@@ -23,7 +23,7 @@
 
 <h4>Latest</h4>
 
-	<div *ngFor="let tr of translations" class="translation-row">
+	<div *ngFor="let tr of translations.reverse()" class="translation-row">
 		<div class="column text">
 		<input type="text" [(ngModel)]="tr.origin.text" (keyup.enter)="editTerm(tr.origin)">
 		</div>
