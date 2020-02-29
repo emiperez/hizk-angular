@@ -30,11 +30,17 @@ export class RestService {
 		);
 	}
 
-	listLevels(): Observable<any> {
-		  return this.http.get(endpoint + 'translations/levels').pipe(
-			      map(this.extractData));
-	}
-
+	list(what: string): Observable<any> {
+		console.log('WHAT: ' + what);
+		what = what.replace(/[^a-z\-\/]/gi, '-').replace(/^\-+/g, '').replace(/\-+$/g,'').trim();
+		console.log('WHAT2: ' + what);
+		if(what && what.length > 0) {
+			return this.http.get(endpoint + what).pipe(
+				map(this.extractData));
+		}
+		return null;
+	}	
+	
 	addTranslation(translation): Observable<any> {
 		console.log(translation);
 		return this.http.post<any>(endpoint + 'translations', JSON.stringify(translation), httpOptions).pipe(

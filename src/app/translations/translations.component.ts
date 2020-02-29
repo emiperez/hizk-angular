@@ -35,7 +35,7 @@ export class TranslationsComponent implements OnInit {
 
 	listLevels() {
 		this.levels = [];
-		this.rest.listLevels().subscribe((data: {}) => {
+		this.rest.list('translations/levels').subscribe((data: {}) => {
 			this.levels = data;
 		});
 	}

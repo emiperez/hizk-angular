@@ -5,5 +5,5 @@ export class Exam {
 			public questionLocale: string,
 			public answerLocale: string,
 			public caseSensitive: boolean = true,
-			public numberOfQuestions: number);
+			public numberOfQuestions: number) {}
 }

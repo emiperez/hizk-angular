@@ -1,1 +1,14 @@
-<p>exam works!</p>
+<div id="examForm">
+	<div class="formRow">
+		<label>Question Language</label>
+		<select [(ngModel)]="exam.questionLocale" name="questionLocale">
+			<option *ngFor="let locale of locales" [ngValue]="locale">{{ locale }}</option>
+		</select>
+	</div>
+	<div class="formRow">
+		<label>Answer Language</label>
+		<select name="answerLocale">
+			<option value="es">Español</option>
+		</select>
+	</div>	
+</div>
