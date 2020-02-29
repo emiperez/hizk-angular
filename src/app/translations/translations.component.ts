@@ -29,6 +29,10 @@ export class TranslationsComponent implements OnInit {
 		this.resetTranslation();
 	}
 
+	public ngAfterViewInit(): void {
+		this.levelSelect.nativeElement.focus();
+ 	}
+
 	listLevels() {
 		this.levels = [];
 		this.rest.listLevels().subscribe((data: {}) => {
