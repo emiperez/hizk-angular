@@ -60,7 +60,7 @@ export class RestService {
 
 	addExam(exam): Observable<any> {
 		console.log(exam);
-		return this.http.post<any>(endpoint + 'exam', JSON.stringify(exam), httpOptions).pipe(
+		return this.http.post<any>(endpoint + 'exams', JSON.stringify(exam), httpOptions).pipe(
 			tap((exam) => console.log(`added exam=${exam.id}`)),
 			catchError(this.handleError<any>('addExam'))
 		);

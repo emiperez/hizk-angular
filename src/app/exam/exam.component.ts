@@ -10,7 +10,7 @@ import { Exam } from '../model/exam';
 
 export class ExamComponent implements OnInit {
 
-	locales:any = [];
+	locales:any = []; //TODO: move to Globals
 	public exam: Exam;
 
         constructor(public rest:RestService) {
@@ -22,10 +22,22 @@ export class ExamComponent implements OnInit {
   }
 
         listLocales() {
-                this.locales = [];
                 this.rest.list('terms/locales').subscribe((data: {}) => {
                         this.locales = data;
                 });
         }
+	
+	restLocales(locale) {
+		return this.locales.filter(function(element: string): boolean {
+				return element !== locale;
+			});
+	}
 
+        startExam() {
+                this.rest.addExam(this.exam).subscribe((result) => {
+                        console.log("START EXAM:" + JSON.stringify(result));
+                }, (err) => {
+                        console.log(err);
+                });
+        }
 }

@@ -7,8 +7,17 @@
 	</div>
 	<div class="formRow">
 		<label>Answer Language</label>
-		<select name="answerLocale">
-			<option value="es">Español</option>
+		<select [(ngModel)]="exam.answerLocale" name="answerLocale">
+			<option *ngFor="let locale of restLocales(exam.questionLocale)" >{{ locale }}</option>
 		</select>
-	</div>	
+	</div>
+	<div class="formRow">
+		<label>Case Sensitive</label>
+		<input [(ngModel)]="exam.caseSensitive" type="checkbox">
+	</div>
+	<div class="formRow">
+		<label>Number of Questions</label>
+		<input [(ngModel)]="exam.numberOfQuestions" type="number">
+	</div>
+	<button (click)="startExam()">Start Exam</button>
 </div>
