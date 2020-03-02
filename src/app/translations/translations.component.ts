@@ -26,7 +26,7 @@ export class TranslationsComponent implements OnInit {
 	ngOnInit(): void {
 		this.listLevels();
 		this.translation = new Translation(this.origin, this.meaning, "A1");
-		this.resetTranslation();
+		this.listLatestTranslations();
 	}
 
 	public ngAfterViewInit(): void {
@@ -37,6 +37,12 @@ export class TranslationsComponent implements OnInit {
 		this.levels = [];
 		this.rest.list('translations/levels').subscribe((data: {}) => {
 			this.levels = data;
+		});
+	}
+
+	listLatestTranslations() {
+		this.rest.list('translations').subscribe((data: {}) => {
+			this.translations = data;
 		});
 	}
 

@@ -24,7 +24,7 @@ export class RestService {
 	}
 
 	updateTerm(term): Observable<any> {
-		return this.http.put(endpoint + 'terms/' + term.id, JSON.stringify(term), httpOptions).pipe(
+		return this.http.put(endpoint + 'terms/', JSON.stringify(term), httpOptions).pipe(
 			tap(_ => console.log(`updated term = ${term.locale}- ${term.text}`)),
 			catchError(this.handleError<any>('updateTerm'))
 		);

@@ -36,6 +36,7 @@ export class ExamComponent implements OnInit {
         startExam() {
                 this.rest.addExam(this.exam).subscribe((result) => {
                         console.log("START EXAM:" + JSON.stringify(result));
+			this.exam = result;
                 }, (err) => {
                         console.log(err);
                 });

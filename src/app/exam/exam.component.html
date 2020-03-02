@@ -21,3 +21,10 @@
 	</div>
 	<button (click)="startExam()">Start Exam</button>
 </div>
+<h2>Exam Questions</h2>
+<div id="questionList">
+	<div class="questionRow" *ngFor="let question of exam.questions">
+		<label>{{ question.text }}</label>
+		<input type="text" id="{{question.id}}">
+	</div>
+</div>

@@ -1,3 +1,5 @@
+import{ Term } from './term';
+ 
 export class Exam {
 
 	constructor(public id: number, 
@@ -5,5 +7,6 @@ export class Exam {
 			public questionLocale: string,
 			public answerLocale: string,
 			public caseSensitive: boolean = true,
-			public numberOfQuestions: number) {}
+			public numberOfQuestions: number,
+			public questions: Term[] = null) {}
 }
