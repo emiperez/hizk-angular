@@ -12,6 +12,8 @@ export class ExamComponent implements OnInit {
 
 	locales:any = []; //TODO: move to Globals
 	public exam: Exam;
+	public correctAnswers: number;
+	public wrongAnswers: number;
 
         constructor(public rest:RestService) {
         }
@@ -37,8 +39,28 @@ export class ExamComponent implements OnInit {
                 this.rest.addExam(this.exam).subscribe((result) => {
                         console.log("START EXAM:" + JSON.stringify(result));
 			this.exam = result;
+			this.correctAnswers = 0;
+			this.wrongAnswers = 0;
                 }, (err) => {
                         console.log(err);
                 });
         }
+
+	onKeyEnter(event: KeyboardEvent) {
+		var inputElement = event.target as HTMLInputElement;
+		inputElement.disabled = true;
+		this.rest.check('exams/' + this.exam.id + '/' + inputElement.id + '/' + inputElement.value).subscribe((response) => {
+			console.log('CHECK STATUS: ' + response.status);
+			if (response.status == 204) {
+				inputElement.style.color = 'green';
+				++this.correctAnswers;
+			}
+		}, (error) => {
+			console.log(error.status + ' - ' + error.message);
+			if (error.status == 404) {
+				inputElement.style.color = 'red';
+				++this.wrongAnswers;
+			}
+		});
+	}
 }
