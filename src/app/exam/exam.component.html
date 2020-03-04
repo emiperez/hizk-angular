@@ -8,7 +8,7 @@
 	<div class="formRow">
 		<label>Answer Language</label>
 		<select [(ngModel)]="exam.answerLocale" name="answerLocale">
-			<option *ngFor="let locale of restLocales(exam.questionLocale)" >{{ locale }}</option>
+			<option *ngFor="let locale of restLocales(exam.questionLocale)" [ngValue]="locale">{{ locale }}</option>
 		</select>
 	</div>
 	<div class="formRow">
@@ -25,6 +25,6 @@
 <div id="questionList">
 	<div class="questionRow" *ngFor="let question of exam.questions">
 		<label>{{ question.text }}</label>
-		<input type="text" id="{{question.id}}" (keyup.enter)="onKeyEnter($event)">
+		<input type="text" id="{{question.id}}" (keyup.enter)="changeAnswer($event)" (focusout)="changeAnswer($event)">
 	</div>
 </div>

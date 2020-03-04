@@ -20,7 +20,7 @@ export class ExamComponent implements OnInit {
 
   ngOnInit(): void {
 	this.listLocales();
-	this.exam = new Exam(null, null, "es", "de", true, 20);
+	this.exam = new Exam(null, null, "es", "de", true, 10);
   }
 
         listLocales() {
@@ -36,6 +36,7 @@ export class ExamComponent implements OnInit {
 	}
 
         startExam() {
+		this.exam.id = null;
                 this.rest.addExam(this.exam).subscribe((result) => {
                         console.log("START EXAM:" + JSON.stringify(result));
 			this.exam = result;
@@ -46,7 +47,7 @@ export class ExamComponent implements OnInit {
                 });
         }
 
-	onKeyEnter(event: KeyboardEvent) {
+	changeAnswer(event: KeyboardEvent) {
 		var inputElement = event.target as HTMLInputElement;
 		inputElement.disabled = true;
 		this.rest.check('exams/' + this.exam.id + '/' + inputElement.id + '/' + inputElement.value).subscribe((response) => {
