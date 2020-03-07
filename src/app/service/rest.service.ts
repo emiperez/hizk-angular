@@ -23,7 +23,6 @@ export class RestService {
 		  return body || { };
 	}
 
-
 	list(what: string): Observable<any> {
 		console.log('list WHAT: ' + what);
 		what = this.sanitize(what);
@@ -81,7 +80,7 @@ export class RestService {
 	};
 
 	private sanitize(requestPath): string {
-		return requestPath.replace(/[^a-z\-\/]/gi, '-').replace(/^\-+/g, '').replace(/\-+$/g,'').trim();
+		return requestPath.replace(/[^\w\-\/]/gi, '-').replace(/^\-+/g, '').replace(/\-+$/g,'').trim();
 	}
 }
 

@@ -50,18 +50,20 @@ export class ExamComponent implements OnInit {
 	changeAnswer(event: KeyboardEvent) {
 		var inputElement = event.target as HTMLInputElement;
 		inputElement.disabled = true;
-		this.rest.check('exams/' + this.exam.id + '/' + inputElement.id + '/' + inputElement.value).subscribe((response) => {
-			console.log('CHECK STATUS: ' + response.status);
-			if (response.status == 204) {
+		let correctAnswers:any = [];
+		this.rest.list('exams/' + this.exam.id + '/' + inputElement.id ).subscribe((result) => {
+			console.log('CORRECT ANSWERS: ' + result);
+			correctAnswers = result;
+			if (correctAnswers.includes(inputElement.value)) {
 				inputElement.style.color = 'green';
 				++this.correctAnswers;
+			} else {
+				inputElement.value = correctAnswers[0];
+				inputElement.style.color = "red";
+				++this.wrongAnswers;
 			}
 		}, (error) => {
 			console.log(error.status + ' - ' + error.message);
-			if (error.status == 404) {
-				inputElement.style.color = 'red';
-				++this.wrongAnswers;
-			}
 		});
 	}
 }
