@@ -49,7 +49,6 @@ export class ExamComponent implements OnInit {
 
 	changeAnswer(event: KeyboardEvent) {
 		var inputElement = event.target as HTMLInputElement;
-		inputElement.disabled = true;
 		let correctAnswers:any = [];
 		this.rest.list('exams/' + this.exam.id + '/' + inputElement.id ).subscribe((result) => {
 			console.log('CORRECT ANSWERS: ' + result);
