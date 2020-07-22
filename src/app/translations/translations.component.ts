@@ -37,6 +37,7 @@ export class TranslationsComponent implements OnInit {
 		this.levels = [];
 		this.rest.list('translations/levels').subscribe((data: {}) => {
 			this.levels = data;
+			this.levels.reverse();
 		});
 	}
 
@@ -48,7 +49,7 @@ export class TranslationsComponent implements OnInit {
 
 	addTranslation() {
 		this.rest.addTranslation(this.translation).subscribe((result) => {
-			this.translations.push(result);
+			this.translations.unshift(result);
 			console.log("ADD TRANSLATION: " + JSON.stringify(result));
 			this.resetTranslation();
 		}, (err) => {
