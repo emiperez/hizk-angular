@@ -3,7 +3,8 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 
-const endpoint = 'http://localhost:8080/';
+//const endpoint = 'http://localhost:8080/';
+const endpoint = 'http://serv:8080/';
 
 const httpOptions = {
 	headers: new HttpHeaders({
