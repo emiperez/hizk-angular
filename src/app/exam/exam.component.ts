@@ -11,16 +11,20 @@ import { Exam } from '../model/exam';
 export class ExamComponent implements OnInit {
 
 	locales:any = []; //TODO: move to Globals
+	@ViewChild('level') levelSelect: ElementRef;
+	levels:any = [];
 	public exam: Exam;
 	public correctAnswers: number;
 	public wrongAnswers: number;
+	public max = 62;
 
         constructor(public rest:RestService) {
         }
 
   ngOnInit(): void {
 	this.listLocales();
-	this.exam = new Exam(null, null, "es", "de", true, 10);
+	this.listLevels();
+	this.exam = new Exam(null, null, "A1", "es", "de", true, 100, 10);
   }
 
         listLocales() {
@@ -33,6 +37,13 @@ export class ExamComponent implements OnInit {
 		return this.locales.filter(function(element: string): boolean {
 				return element !== locale;
 			});
+	}
+
+	listLevels() {
+		this.levels = [];
+		this.rest.list('translations/levels').subscribe((data: {}) => {
+			this.levels = data;
+		});
 	}
 
         startExam() {

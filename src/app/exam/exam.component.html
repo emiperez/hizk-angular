@@ -1,5 +1,11 @@
 <div id="examForm">
 	<div class="formRow">
+		<label>Level</label>
+		<select [(ngModel)]="exam.level" name="questionLocale">
+			<option *ngFor="let level of levels" [ngValue]="level">{{ level }}</option>
+		</select>
+	</div>
+	<div class="formRow">
 		<label>Question Language</label>
 		<select [(ngModel)]="exam.questionLocale" name="questionLocale">
 			<option *ngFor="let locale of locales" [ngValue]="locale">{{ locale }}</option>
@@ -14,6 +20,10 @@
 	<div class="formRow">
 		<label>Case Sensitive</label>
 		<input [(ngModel)]="exam.caseSensitive" type="checkbox">
+	</div>
+	<div class="formRow">
+		<label>Latest</label>
+		<input [(ngModel)]="exam.latest" type="number" max="{{ max }}">
 	</div>
 	<div class="formRow">
 		<label>Number of Questions</label>
