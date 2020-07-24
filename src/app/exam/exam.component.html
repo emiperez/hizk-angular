@@ -29,8 +29,8 @@
 		<label>Number of Questions</label>
 		<input [(ngModel)]="exam.numberOfQuestions" type="number">
 	</div>
-	<button (click)="startExam()">Start Exam</button>
 </div>
+<button (click)="startExam()">Start Exam</button>
 <h2>Exam Questions</h2>
 <div id="questionList">
 	<div class="questionRow" *ngFor="let question of exam.questions">
